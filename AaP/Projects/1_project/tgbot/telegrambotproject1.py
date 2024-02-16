@@ -8,7 +8,7 @@ import http.server
 import json
 import re
 
-bot = telebot.TeleBot('6577398836:AAGolYrHqOtnXaaiOctxqBGc3YL4B9OCaG4') #токен бота
+bot = telebot.TeleBot('TOKEN') #токен бота
 chat_idishnik = 0
 flag1 = False
 flag2 = False
