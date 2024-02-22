@@ -46,8 +46,8 @@ std::map<int,std :: string> func(std :: string a) {
 }
 
 int main() {
-  std :: ifstream ip("train.csv");
-  std :: string line;
+  std::ifstream ip("train.csv");
+  std::string line;
   std::vector<std::map<int, std::string>> arr;
   int age;
   int pcclass;
