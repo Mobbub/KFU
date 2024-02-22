@@ -39,7 +39,6 @@ public:
         if (sideA + sideB > sideC && sideA + sideC > sideB && sideB + sideC > sideA) {
             return sideA + sideB + sideC;
         } else {
-            return 0;
         }
     }
 };
