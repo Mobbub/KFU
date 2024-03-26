@@ -1,14 +1,11 @@
 import requests
-from flask import Flask
-from flask import request
-import telebot #подключение библиотеки
-from telebot import types #подключаем кнопки (types) из библиотеки
+import telebot
+from telebot import types
 import _thread
 import http.server
 import json
-import re
 
-bot = telebot.TeleBot('TOKEN') #токен бота
+bot = telebot.TeleBot('TOKEN')
 chat_idishnik = 0
 flag1 = False
 flag2 = False
@@ -44,7 +41,7 @@ def serv():
 
 _thread.start_new_thread(serv, ())
 
-def reg(otv): ###
+def reg(otv):
     idgit = otv.get('IDgit', 'None')
     chatid = otv.get('ChatID', 'None')
     if idgit == '\x00':
@@ -67,7 +64,7 @@ def reg(otv): ###
             kb.add(btn7, btn8)
             bot.send_message(int(chatid), 'Вы успешно авторизовались! Выберете действие', reply_markup=kb)
 
-def proversession(chat_idishnik): ###
+def proversession(chat_idishnik):
     with open('ses.txt', 'r') as file:
         lines = file.readlines()
         for line in lines:
@@ -110,9 +107,6 @@ def zaprasp_serv(jwt):
     response = requests.post(url, params=parameters)
     return response.content
 
-def h(chat_id):
-    pass
-
 @bot.message_handler(commands = ['start']) 
 def start(message): 
     global chat_idishnik, flag6, name, surname, surname_next
@@ -133,14 +127,14 @@ def start(message):
         kb.add(btn5, btn6)
         kb.add(btn7, btn8)
         kb.add(btn9)
-        bot.send_message(message.chat.id, 'Выберете действие', reply_markup=kb) #команда, которая выводит текст на команду /start
+        bot.send_message(message.chat.id, 'Выберете действие', reply_markup=kb)
     else:
         name = ''
         surname = ''
         surname_next = ''
         flag6 = True
         bot.send_message(message.chat.id, 'Для авторизации введите своё ФИО')
-        #bot.send_message(message.chat.id, f'''Войдите в нашу систему {zapravtorise_avt(chat_idishnik)}''')
+
 
 @bot.message_handler(func = lambda message: message.text == 'Администрирование')
 def gde_para(message):
