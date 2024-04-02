@@ -1,6 +1,6 @@
 import requests
-import telebot #подключение библиотеки
-from telebot import types #подключаем кнопки (types) из библиотеки
+import telebot
+from telebot import types
 import _thread
 import http.server
 import json
