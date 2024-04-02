@@ -1,6 +1,4 @@
 import requests
-from flask import Flask
-from flask import request
 import telebot #подключение библиотеки
 from telebot import types #подключаем кнопки (types) из библиотеки
 import _thread
@@ -8,7 +6,7 @@ import http.server
 import json
 import re
 
-bot = telebot.TeleBot('6577398836:AAGolYrHqOtnXaaiOctxqBGc3YL4B9OCaG4') #токен бота
+bot = telebot.TeleBot('token')
 chat_idishnik = 0
 flag1 = False
 flag2 = False
@@ -16,8 +14,6 @@ flag3 = False
 flag4 = False
 flag5 = False
 flag6 = False
-flag7 = False
-flag8 = False
 name = ''
 surname = ''
 surname_next = ''
@@ -44,7 +40,7 @@ def serv():
 
 _thread.start_new_thread(serv, ())
 
-def reg(otv): ###
+def reg(otv):
     idgit = otv.get('IDgit', 'None')
     chatid = otv.get('ChatID', 'None')
     if idgit == '\x00':
@@ -67,7 +63,7 @@ def reg(otv): ###
             kb.add(btn7, btn8)
             bot.send_message(int(chatid), 'Вы успешно авторизовались! Выберете действие', reply_markup=kb)
 
-def proversession(chat_idishnik): ###
+def proversession(chat_idishnik):
     with open('ses.txt', 'r') as file:
         lines = file.readlines()
         for line in lines:
@@ -258,7 +254,7 @@ def kogda_exz(message):
 
 @bot.message_handler(func=lambda message: True)
 def other(message):
-    global name, surname, surname_next, zapr_deyst, idgit, flag1, flag2, flag3, flag4, flag5, flag6, flag7, flag8
+    global name, surname, surname_next, zapr_deyst, idgit, flag1, flag2, flag3, flag4, flag5, flag6
     a = message.text
     if flag1:
         zapr_deyst += a
