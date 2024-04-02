@@ -3,9 +3,9 @@ def f(x):
 
 def simp(a, b, n):
     h = float(b - a) / n
-    integ = func(a) + func(b)
+    integ = f(a) + f(b)
     for i in range(1, n):
-        integ += func(a + i * h) * (2 if i % 2 == 0 else 4)
+        integ += f(a + i * h) * (2 if i % 2 == 0 else 4)
     return integ * h / 3
     
 a = 0
