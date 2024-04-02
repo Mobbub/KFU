@@ -1,8 +1,15 @@
 import requests
-import telebot
-from telebot import types
+from flask import Flask
+from flask import request
+import telebot #подключение библиотеки
+from telebot import types #подключаем кнопки (types) из библиотеки
+import _thread
+import http.server
+import json
+import re
 
-bot = telebot.TeleBot('6952931811:AAGaxnDxuIeDmcfB460Ce6JVlvMXJ2En278')
+bot = telebot.TeleBot('6577398836:AAGolYrHqOtnXaaiOctxqBGc3YL4B9OCaG4') #токен бота
+chat_idishnik = 0
 flag1 = False
 flag2 = False
 flag3 = False
@@ -11,324 +18,280 @@ flag5 = False
 flag6 = False
 flag7 = False
 flag8 = False
-flag9 = False
-flag10 = False
-flag11 = False
-flag12 = False
-fio = ''
-dr = ''
-ds = ''
-mr = ''
-ms = ''
-supr = ''
-obr = ''
-rd = ''
-graj = ''
-deti = ''
-vnuki = ''
-dost = ''
-deys = ''
+name = ''
+surname = ''
+surname_next = ''
+zapr_deyst = ''
+idgit = ''
 
-def main(fio, dr, ds, mr, ms, supr, obr, rd, graj, deti, vnuki, dost, deys):
-    pass
+def serv():
+    class MyHTTPRequestHandler(http.server.BaseHTTPRequestHandler):
+        def do_POST(self):
+            content_length = int(self.headers['Content-Length'])
+            post_data = self.rfile.read(content_length)
+            json_data = json.loads(post_data)
+            print(json_data)
+            reg(json_data)
+            self.send_response(200)
+            self.send_header('Content-type', 'text/plain')
+            self.end_headers()
+            self.wfile.write(b'Success')
 
-def prov(mes, vopr):
-    pass
+    if __name__ == '__main__':
+        server_address = ('', 8000)
+        httpd = http.server.HTTPServer(server_address, MyHTTPRequestHandler)
+        httpd.serve_forever()
 
-@bot.message_handler(commands = ['start'])
-def start(message):
-    kb = types.ReplyKeyboardMarkup(resize_keyboard=True)
-    btn1 = types.KeyboardButton(text = 'Эпитафия')
-    btn2 = types.KeyboardButton(text = 'Биография')
-    kb.add(btn1)
-    kb.add(btn2)
-    bot.send_message(message.chat.id, 'Здрасьте. Выберете действие', reply_markup=kb)
+_thread.start_new_thread(serv, ())
 
-@bot.message_handler(func = lambda message: message.text == 'Эпитафия')
-def epitafia(message):
-    global flag1, deys
-    kb = types.ReplyKeyboardMarkup(resize_keyboard=True)
-    btn1 = types.KeyboardButton(text = 'Следующий вопрос')
-    btn2 = types.KeyboardButton(text = 'Прошлый вопрос')
-    btn3 = types.KeyboardButton(text = 'Начать заново')
-    kb.add(btn2, btn3)
-    kb.add(btn1)
-    flag1 = True
-    deys = 'Эпитафия'
-    bot.send_message(message.chat.id, '''Введите ФИО.
-Например: Иванов Иван Иванович''', reply_markup=kb)
-    
-@bot.message_handler(func = lambda message: message.text == 'Биография')
-def biografia(message):
-    global flag1, deys
-    kb = types.ReplyKeyboardMarkup(resize_keyboard=True)
-    btn1 = types.KeyboardButton(text = 'Следующий вопрос')
-    btn2 = types.KeyboardButton(text = 'Прошлый вопрос')
-    btn3 = types.KeyboardButton(text = 'Начать заново')
-    kb.add(btn2, btn3)
-    kb.add(btn1)
-    flag1 = True
-    deys = 'Биография'
-    bot.send_message(message.chat.id, '''Введите ФИО.
-Например: Иванов Иван Иванович''', reply_markup=kb)
-    
-@bot.message_handler(func = lambda message: message.text == f'Другой {deys}')
-def noviy(message):
-    global fio, dr, ds, mr, ms, supr, obr, rd, graj, deti, vnuki, dost, deys
-    kb = types.ReplyKeyboardMarkup(resize_keyboard=True)
-    btn1 = types.KeyboardButton(text = f'Другой {deys}')
-    btn2 = types.KeyboardButton(text = 'Начать заново')
-    kb.add(btn1)
-    kb.add(btn2)
-    bot.send_message(message.chat.id, '''Вот {deys}
-{main(fio, dr, ds, mr, ms, supr, obr, rd, graj, deti, vnuki, dost, deys)}''', reply_markup=kb)
-    
-@bot.message_handler(func = lambda message: message.text == 'Начать заново')
-def zanovo(message):
-    global flag1, flag2, flag3, flag4, flag5, flag6, flag7, flag8, flag9, flag10, flag11, flag12, fio, dr, ds, mr, ms, supr, obr, rd, graj, deti, vnuki, dost, deys
-    flag1 = False
-    flag2 = False
-    flag3 = False
-    flag4 = False
-    flag5 = False
-    flag6 = False
-    flag7 = False
-    flag8 = False
-    flag9 = False
-    flag10 = False
-    flag11 = False
-    flag12 = False
-    fio = ''
-    dr = ''
-    ds = ''
-    mr = ''
-    ms = ''
-    supr = ''
-    obr = ''
-    rd = ''
-    graj = ''
-    deti = ''
-    vnuki = ''
-    dost = ''
-    deys = ''    
-    kb = types.ReplyKeyboardMarkup(resize_keyboard=True)
-    btn1 = types.KeyboardButton(text = 'Эпитафия')
-    btn2 = types.KeyboardButton(text = 'Биография')
-    kb.add(btn1)
-    kb.add(btn2)
-    bot.send_message(message.chat.id, 'Выберете действие', reply_markup=kb)
-
-@bot.message_handler(func = lambda message: True)
-def info(message):
-    global flag1, flag2, flag3, flag4, flag5, flag6, flag7, flag8, flag9, flag10, flag11, flag12, fio, dr, ds, mr, ms, supr, obr, rd, graj, deti, vnuki, dost, deys
-    if flag1:
-        kb = types.ReplyKeyboardMarkup(resize_keyboard=True)
-        btn1 = types.KeyboardButton(text = 'Следующий вопрос')
-        btn2 = types.KeyboardButton(text = 'Прошлый вопрос')
-        btn3 = types.KeyboardButton(text = 'Начать заново')
-        kb.add(btn2, btn3)
-        kb.add(btn1)
-        if prov(message.text, 'ФИО'):
-            fio = message.text
-            flag2 = True
-            message.text = ''
-            flag1 = False
-            bot.send_message(message.chat.id, '''Введите дату рождения. 
-Например: 01.01.2000''', reply_markup=kb)
-        else:
-            bot.send_message(message.chat.id, '''Что то пошло не так, введите ФИО ещё раз, проверьте правильность написания. 
-Например: ''', reply_markup=kb)
-    elif flag2:
-        kb = types.ReplyKeyboardMarkup(resize_keyboard=True)
-        btn1 = types.KeyboardButton(text = 'Следующий вопрос')
-        btn2 = types.KeyboardButton(text = 'Прошлый вопрос')
-        btn3 = types.KeyboardButton(text = 'Начать заново')
-        kb.add(btn1, btn2)
-        kb.add(btn3)
-        if prov(message.text, 'ДР'):
-            dr = message.text
-            flag3 = True
-            message.text = ''
-            flag2 = False
-            bot.send_message(message.chat.id, '''Введите дату смерти. 
-Например: 01.01.2000''', reply_markup=kb)
-        else:
-            bot.send_message(message.chat.id, '''Что то пошло не так, введите дату рождения ещё раз, проверьте правильность написания. 
-Например: 01.01.2000''', reply_markup=kb)
-    elif flag3:
-        kb = types.ReplyKeyboardMarkup(resize_keyboard=True)
-        btn1 = types.KeyboardButton(text = 'Следующий вопрос')
-        btn2 = types.KeyboardButton(text = 'Прошлый вопрос')
-        btn3 = types.KeyboardButton(text = 'Начать заново')
-        kb.add(btn1, btn2)
-        kb.add(btn3)
-        if prov(message.text, 'ДС'):
-            ds = message.text
-            flag4 = True
-            message.text = ''
-            flag3 = False
-            bot.send_message(message.chat.id, '''Введите место рождения. 
-Например: Россия''', reply_markup=kb)
-        else:
-            bot.send_message(message.chat.id, '''Что то пошло не так, введите дату смерти ещё раз, проверьте правильность написания. 
-Например: 01.01.2000''', reply_markup=kb)
-    elif flag4:
-        kb = types.ReplyKeyboardMarkup(resize_keyboard=True)
-        btn1 = types.KeyboardButton(text = 'Следующий вопрос')
-        btn2 = types.KeyboardButton(text = 'Прошлый вопрос')
-        btn3 = types.KeyboardButton(text = 'Начать заново')
-        kb.add(btn1, btn2)
-        kb.add(btn3)
-        if prov(message.text, 'МР'):
-            mr = message.text
-            flag5 = True
-            message.text = ''
-            flag4 = False
-            bot.send_message(message.chat.id, '''Введите место смерти.
-Например: Россия''', reply_markup=kb)
-        else:
-            bot.send_message(message.chat.id, '''Что то пошло не так, введите место рождения ещё раз, проверьте правильность написания. 
-Например: Россия''', reply_markup=kb)
-    elif flag5:
-        kb = types.ReplyKeyboardMarkup(resize_keyboard=True)
-        btn1 = types.KeyboardButton(text = 'Следующий вопрос')
-        btn2 = types.KeyboardButton(text = 'Прошлый вопрос')
-        btn3 = types.KeyboardButton(text = 'Начать заново')
-        kb.add(btn1, btn2)
-        kb.add(btn3)
-        if prov(message.text, 'МС'):
-            ms = message.text
-            flag6 = True
-            message.text = ''
-            flag5 = False
-            bot.send_message(message.chat.id, '''Введите ФИО супруга(ги).
-Например: Иванов Иван Иванович''', reply_markup=kb)
-        else:
-            bot.send_message(message.chat.id, '''Что то пошло не так, введите место смерти ещё раз, проверьте правильность написания. 
-Например: Россия''', reply_markup=kb)
-    elif flag6:
-        kb = types.ReplyKeyboardMarkup(resize_keyboard=True)
-        btn1 = types.KeyboardButton(text = 'Следующий вопрос')
-        btn2 = types.KeyboardButton(text = 'Прошлый вопрос')
-        btn3 = types.KeyboardButton(text = 'Начать заново')
-        kb.add(btn1, btn2)
-        kb.add(btn3)
-        if prov(message.text, 'Супруг'):
-            supr = message.text
-            flag7 = True
-            message.text = ''
-            flag6 = False
-            bot.send_message(message.chat.id, '''Укажите учебное заведение, которое закончил этот человек.
-Например: Физико-технический институ (ФТИ) КФУ им. Вернадского''', reply_markup=kb)
-        else:
-            bot.send_message(message.chat.id, '''Что то пошло не так, введите ФИО супруга(ги) ещё раз, проверьте правильность написания. 
-Например: Иванов Иван Иванович''', reply_markup=kb)
-    elif flag7:
-        kb = types.ReplyKeyboardMarkup(resize_keyboard=True)
-        btn1 = types.KeyboardButton(text = 'Следующий вопрос')
-        btn2 = types.KeyboardButton(text = 'Прошлый вопрос')
-        btn3 = types.KeyboardButton(text = 'Начать заново')
-        kb.add(btn1, btn2)
-        kb.add(btn3)
-        if prov(message.text, 'обр'):
-            obr = message.text
-            flag8 = True
-            message.text = ''
-            flag7 = False
-            bot.send_message(message.chat.id, '''Укажите род деятельности человека.
-Например: Учёный математик''', reply_markup=kb)
-        else:
-            bot.send_message(message.chat.id, '''Что то пошло не так, введите учебное заведение, которое закончил этот человек, проверьте правильность написания. 
-Например: Физико-технический институ (ФТИ) КФУ им. Вернадского''', reply_markup=kb)
-    elif flag8:
-        kb = types.ReplyKeyboardMarkup(resize_keyboard=True)
-        btn1 = types.KeyboardButton(text = 'Следующий вопрос')
-        btn2 = types.KeyboardButton(text = 'Прошлый вопрос')
-        btn3 = types.KeyboardButton(text = 'Начать заново')
-        kb.add(btn1, btn2)
-        kb.add(btn3)
-        if prov(message.text, 'РД'):
-            rd = message.text
-            flag9 = True
-            message.text = ''
-            flag8 = False
-            bot.send_message(message.chat.id, '''Укажите гражданство человека.
-Например: Россия''', reply_markup=kb)
-        else:
-            bot.send_message(message.chat.id, '''Что то пошло не так, введите род деятельности человека, проверьте правильность написания. 
-Например: Учёный математик''', reply_markup=kb)
-    elif flag9:
-        kb = types.ReplyKeyboardMarkup(resize_keyboard=True)
-        btn1 = types.KeyboardButton(text = 'Следующий вопрос')
-        btn2 = types.KeyboardButton(text = 'Прошлый вопрос')
-        btn3 = types.KeyboardButton(text = 'Начать заново')
-        kb.add(btn1, btn2)
-        kb.add(btn3)
-        if prov(message.text, 'ГРАЖ'):
-            graj = message.text
-            flag10 = True
-            message.text = ''
-            flag9 = False
-            bot.send_message(message.chat.id, '''Укажите ФИО детей.
-Например: Иванов Иван Иванович''', reply_markup=kb)
-        else:
-            bot.send_message(message.chat.id, '''Что то пошло не так, введите гражданство человека, проверьте правильность написания. 
-Например: Россия''', reply_markup=kb)
-    elif flag10:
-        kb = types.ReplyKeyboardMarkup(resize_keyboard=True)
-        btn1 = types.KeyboardButton(text = 'Следующий вопрос')
-        btn2 = types.KeyboardButton(text = 'Прошлый вопрос')
-        btn3 = types.KeyboardButton(text = 'Начать заново')
-        kb.add(btn1, btn2)
-        kb.add(btn3)
-        if prov(message.text, 'Дети'):
-            deti = message.text
-            flag11 = True
-            message.text = ''
-            flag10 = False
-            bot.send_message(message.chat.id, '''Укажите ФИО внуков:
-Например: Иванов Иван Иванович''', reply_markup=kb)
-        else:
-            bot.send_message(message.chat.id, '''Что то пошло не так, введите ФИО детей, проверьте правильность написания. 
-Например: Иванов Иван Иванович''', reply_markup=kb)
-    elif flag11:
-        kb = types.ReplyKeyboardMarkup(resize_keyboard=True)
-        btn1 = types.KeyboardButton(text = 'Следующий вопрос')
-        btn2 = types.KeyboardButton(text = 'Прошлый вопрос')
-        btn3 = types.KeyboardButton(text = 'Начать заново')
-        kb.add(btn1, btn2)
-        kb.add(btn3)
-        if prov(message.text, 'Внуки'):
-            vnuki = message.text
-            flag12 = True
-            message.text = ''
-            flag11 = False
-            bot.send_message(message.chat.id, '''Введите награды, премии или достижения, которые есть у человека.
-Например: Знак Почета 1954, 1981''', reply_markup=kb)
-        else:
-            bot.send_message(message.chat.id, '''Что то пошло не так, введите ФИО внуков, проверьте правильность написания. 
-Например: Иванов Иван Иванович''', reply_markup=kb)
-    elif flag12:
-        kb = types.ReplyKeyboardMarkup(resize_keyboard=True)
-        btn1 = types.KeyboardButton(text = f'Другой {deys}')
-        btn2 = types.KeyboardButton(text = 'Начать заново')
-        kb.add(btn1)
-        kb.add(btn2)
-        if prov(message.text, 'дост'):
-            dost = message.text
-            flag12 = False
-            bot.send_message(message.chat.id, f'''Вот {deys}:
-{main(fio, dr, ds, mr, ms, supr, obr, rd, graj, deti, vnuki, dost, deys)}''', reply_markup=kb)
-        else:
-            bot.send_message(message.chat.id, '''Что то пошло не так, введите награды, премии или достижения, которые есть у человека, проверьте правильность написания. 
-Например: Знак Почета 1954, 1981''', reply_markup=kb)
+def reg(otv): ###
+    idgit = otv.get('IDgit', 'None')
+    chatid = otv.get('ChatID', 'None')
+    if idgit == '\x00':
+        bot.send_message(int(chatid), 'Вы не зарегистрировались')
     else:
+        with open('ses.txt', 'a') as file:
+            file.write(f'{chatid} {idgit}\n')
+            kb = types.ReplyKeyboardMarkup(resize_keyboard=True)
+            btn1 = types.KeyboardButton(text = 'Где следующая пара')
+            btn2 = types.KeyboardButton(text = 'Расписание на [день недели]')
+            btn3 = types.KeyboardButton(text = 'Расписание на сегодня')
+            btn4 = types.KeyboardButton(text = 'Расписание на завтра')
+            btn5 = types.KeyboardButton(text = 'Оставить комментарий к [номер] паре [для группы]')
+            btn6 = types.KeyboardButton(text = 'Где группа/подгруппа')
+            btn7 = types.KeyboardButton(text = 'Где преподаватель')
+            btn8 = types.KeyboardButton(text = 'Когда экзамен')
+            kb.add(btn1, btn2)
+            kb.add(btn3, btn4)
+            kb.add(btn5, btn6)
+            kb.add(btn7, btn8)
+            bot.send_message(int(chatid), 'Вы успешно авторизовались! Выберете действие', reply_markup=kb)
+
+def proversession(chat_idishnik): ###
+    with open('ses.txt', 'r') as file:
+        lines = file.readlines()
+        for line in lines:
+            if str(chat_idishnik) in line:
+                return True
+            return False
+
+def zapravtorise_avt(chat_idishnik, surname, name, surname_next):
+    global response
+    url = 'http://192.168.253.179:8080/Authorization'
+    parameters = {
+        'ChatID': str(chat_idishnik),
+        'Surname': surname,
+        'Name': name,
+        'Surname_next': surname_next
+    }
+    response = requests.post(url, params=parameters)
+    print(response.content)
+    return response.content
+
+def zapr_avt(zapr_deyst, chat_idishnik):
+    with open('input.txt', 'r') as f_in, open('output.txt', 'w') as f_out:
+        for line in f_in:
+            match = re.search(r'00004444 (\d+)', line)
+            if match:
+                pass
+    global response
+    url = 'http://192.168.253.179:8080/Surgery'
+    parameters = {
+        'IDgit': 1,
+        'Request': zapr_deyst
+    }
+    response = requests.post(url, params=parameters)    
+    return response.content
+
+def zaprasp_serv(jwt):
+    global response
+    url = 'http://26.237.88.118:8060/tgbot' ###
+    parameters = jwt
+    response = requests.post(url, params=parameters)
+    return response.content
+
+def h(chat_id):
+    pass
+
+@bot.message_handler(commands = ['start']) 
+def start(message): 
+    global chat_idishnik, flag6, name, surname, surname_next
+    chat_idishnik = message.chat.id
+    if proversession(chat_idishnik):
         kb = types.ReplyKeyboardMarkup(resize_keyboard=True)
-        btn1 = types.KeyboardButton(text = 'Эпитафия')
-        btn2 = types.KeyboardButton(text = 'Биография')
-        kb.add(btn1)
-        kb.add(btn2)
-        bot.send_message(message.chat.id, 'моя твоя не понимать')
-        bot.send_message(message.chat.id, 'Выберете действие', reply_markup=kb)
+        btn1 = types.KeyboardButton(text = 'Где следующая пара')
+        btn2 = types.KeyboardButton(text = 'Расписание на [день недели]')
+        btn3 = types.KeyboardButton(text = 'Расписание на сегодня')
+        btn4 = types.KeyboardButton(text = 'Расписание на завтра')
+        btn5 = types.KeyboardButton(text = 'Оставить комментарий к [номер] паре [для группы]')
+        btn6 = types.KeyboardButton(text = 'Где группа/подгруппа')
+        btn7 = types.KeyboardButton(text = 'Где преподаватель')
+        btn8 = types.KeyboardButton(text = 'Когда экзамен')
+        btn9 = types.KeyboardButton(text = 'Администрирование')
+        kb.add(btn1, btn2)
+        kb.add(btn3, btn4)
+        kb.add(btn5, btn6)
+        kb.add(btn7, btn8)
+        kb.add(btn9)
+        bot.send_message(message.chat.id, 'Выберете действие', reply_markup=kb) #команда, которая выводит текст на команду /start
+    else:
+        name = ''
+        surname = ''
+        surname_next = ''
+        flag6 = True
+        bot.send_message(message.chat.id, 'Для авторизации введите своё ФИО')
+        #bot.send_message(message.chat.id, f'''Войдите в нашу систему {zapravtorise_avt(chat_idishnik)}''')
+
+@bot.message_handler(func = lambda message: message.text == 'Администрирование')
+def gde_para(message):
+    global chat_idishnik, flag6
+    chat_idishnik = message.chat.id
+    if proversession(chat_idishnik):
+        bot.send_message(message.chat.id, 'http://26.70.121.176:8085/')
+    else:
+        bot.send_message(message.chat.id, 'Для авторизации введите вашу фамилию')
+        flag6 = True
+
+@bot.message_handler(fanc=lambda message: message.text == 'Где следующая пара')
+def gde_para(message):
+    global chat_idishnik, zapr_deyst, flag6
+    chat_idishnik = message.chat.id
+    if proversession(chat_idishnik):
+        zapr_deyst = ''    
+        zapr_deyst += 'Где следующая пара' 
+        bot.send_message(message.chat.id, zaprasp_serv(zapr_avt(idgit, zapr_deyst)))
+        zapr_deyst = ''
+    else:
+        bot.send_message(message.chat.id, 'Для авторизации введите вашу фамилию')
+        flag6 = True
+
+@bot.message_handler(fanc=lambda message: message.text == 'Расписание на [день недели]') 
+def rasp_den(message):
+    global chat_idishnik, zapr_deyst, flag1, flag6
+    chat_idishnik = message.chat.id
+    if proversession(chat_idishnik):
+        zapr_deyst = ''
+        flag1 = True
+        zapr_deyst += 'Расписание на '
+        bot.send_message(message.chat.id, 'Введите полное название дня недели')
+    else:
+        bot.send_message(message.chat.id, 'Для авторизации введите вашу фамилию')
+        flag6 = True
+
+@bot.message_handler(fanc=lambda message: message.text == 'Расписание на сегодня') 
+def rasp_segod(message):
+    global chat_idishnik, zapr_deyst, flag6
+    chat_idishnik = message.chat.id
+    if proversession(chat_idishnik):
+        zapr_deyst = ''     
+        zapr_deyst += 'Расписание на сегодня'
+        bot.send_message(message.chat.id, zaprasp_serv(zapr_avt(idgit, zapr_deyst)))
+        zapr_deyst = ''
+    else:
+        bot.send_message(message.chat.id, 'Для авторизации введите вашу фамилию')
+        flag6 = True
+
+@bot.message_handler(fanc=lambda message: message.text == 'Расписание на завтра') 
+def rasp_zavt(message):
+    global chat_idishnik, zapr_deyst, flag6
+    chat_idishnik = message.chat.id
+    if proversession(chat_idishnik):
+        zapr_deyst = '' 
+        zapr_deyst += 'Расписание на завтра'
+        bot.send_message(message.chat.id, zaprasp_serv(zapr_avt(idgit, zapr_deyst)))
+        zapr_deyst = ''
+    else:
+        flag6 = True
+        bot.send_message(message.chat.id, 'Для авторизации введите вашу фамилию')
+
+@bot.message_handler(func=lambda message: message.text == 'Оставить комментарий к [номер] паре [для группы]') ### 
+def ost_com(message):
+    global chat_idishnik, zapr_deyst, flag5, flag6
+    if proversession(chat_idishnik):
+        chat_idishnik = message.chat.id
+        zapr_deyst = ''
+        zapr_deyst += 'Оставить комментарий к '
+        flag5 = True
+        bot.send_message(message.chat.id, 'Введите номер пары и название группы слитно в одном сообщении')
+    else:
+        bot.send_message(message.chat.id, 'Для авторизации введите вашу фамилию')
+        flag6 = True
+
+@bot.message_handler(func=lambda message: message.text == 'Где группа/подгруппа')
+def gde_grupa(message):
+    global chat_idishnik, zapr_deyst, flag2, flag6
+    if proversession(chat_idishnik):
+        chat_idishnik = message.chat.id
+        zapr_deyst = ''
+        zapr_deyst += 'Где '
+        flag2 = True
+        bot.send_message(message.chat.id, 'Введите полное название группы')
+    else:
+        bot.send_message(message.chat.id, 'Для авторизации введите вашу фамилию')
+        flag6 = True
+
+@bot.message_handler(func=lambda message: message.text == 'Где преподаватель') 
+def gde_prep(message):
+    global chat_idishnik, zapr_deyst, flag3, flag6
+    chat_idishnik = message.chat.id
+    if proversession(chat_idishnik):
+        zapr_deyst = '' 
+        zapr_deyst += 'Где преподаватель'
+        flag3=True
+        bot.send_message(message.chat.id, 'Введите фамилию преподавателя')
+    else:
+        bot.send_message(message.chat.id, 'Для авторизации введите вашу фамилию')
+        flag6 = True
+
+@bot.message_handler(func=lambda message: message.text == 'Когда экзамен') ###
+def kogda_exz(message):
+    global chat_idishnik, zapr_deyst, flag4, flag6
+    chat_idishnik = message.chat.id
+    if proversession(chat_idishnik):
+        zapr_deyst = '' 
+        zapr_deyst += 'Где преподаватель'
+        flag4=True
+        bot.send_message(message.chat.id, 'Введите полное название предмета')
+    else:
+        bot.send_message(message.chat.id, 'Для авторизации введите вашу фамилию')
+        flag6 = True
+
+@bot.message_handler(func=lambda message: True)
+def other(message):
+    global name, surname, surname_next, zapr_deyst, idgit, flag1, flag2, flag3, flag4, flag5, flag6, flag7, flag8
+    a = message.text
+    if flag1:
+        zapr_deyst += a
+        bot.send_message(message.chat.id, zaprasp_serv(zapr_avt(idgit, zapr_deyst)))
+        zapr_deyst = ''
+        flag1 = False
+    if flag2:
+        zapr_deyst += message.text
+        bot.send_message(message.chat.id, zaprasp_serv(zapr_avt(idgit, zapr_deyst)))
+        zapr_deyst = ''
+        flag2 = False
+    if flag3:
+        zapr_deyst += message.text
+        bot.send_message(message.chat.id, zaprasp_serv(zapr_avt(idgit, zapr_deyst)))
+        zapr_deyst = ''
+        flag3 = False
+    if flag4:
+        zapr_deyst += message.text
+        bot.send_message(message.chat.id, zaprasp_serv(zapr_avt(idgit, zapr_deyst)))
+        zapr_deyst = ''
+        flag4 = False
+    if flag5:
+        zapr_deyst += message.text
+        bot.send_message(message.chat.id, zaprasp_serv(zapr_avt(idgit, zapr_deyst)))
+        zapr_deyst = ''
+        flag5 = False
+    if flag6:
+        fio = message.text
+        split_fio = fio.split()
+        if len(split_fio) == 3:
+            surname = split_fio[0]
+            name = split_fio[1]
+            patronymic = split_fio[2]
+            bot.send_message(message.chat.id, f'''Войдите в нашу систему {zapravtorise_avt(chat_idishnik, surname, name, patronymic)}''')  
 
 bot.polling()
