@@ -1,4 +1,4 @@
-import math, numpy as np
+import math
 
 def find_error(matrix, column, solutions):
     error = []
@@ -14,13 +14,13 @@ def find_error(matrix, column, solutions):
         error_vector_sum += math.pow(element, 2)
     return math.sqrt(error_vector_sum)
 
-A = np.array([
+A = [
     [5, 2, -1],
     [3, 7, 2],
     [-2, 4, 6]
-])
+]
 
-B = np.array([12, 15, 10])
+B = [12, 15, 10]
 
 X = prositer(A, B, 0.0000001)
 
