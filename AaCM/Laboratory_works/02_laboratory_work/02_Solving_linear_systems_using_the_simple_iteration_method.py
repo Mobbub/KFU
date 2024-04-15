@@ -1,5 +1,3 @@
-import numpy as np
-
 def prositer(matrix, column, eps):
     matrix_size = len(matrix)
     solutions = [0] * matrix_size
@@ -12,16 +10,16 @@ def prositer(matrix, column, eps):
                 if i != j:
                     sum -= matrix[i][j] * previous_solutions[j]
             solutions[i] = sum / matrix[i][i]
-        if np.abs(solutions[0] - previous_solutions[0]) <= eps:
+        if abs(solutions[0] - previous_solutions[0]) <= eps:
             break
     return solutions
 
-A = np.array([
+A = [
     [5, 2, -1],
     [3, 7, 2],
     [-2, 4, 6]
-])
+]
 
-B = np.array([12, 15, 10])
+B = [12, 15, 10]
 
-print(prositer(A, B))
+print(prositer(A, B, 0.0001))
