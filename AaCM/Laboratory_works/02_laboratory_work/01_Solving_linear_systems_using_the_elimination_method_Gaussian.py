@@ -1,5 +1,3 @@
-import numpy as np
-
 def gauss(matrix, column):
     matrix_size = len(matrix)
     for i in range(matrix_size):
@@ -17,12 +15,12 @@ def gauss(matrix, column):
         solutions[i] /= matrix[i][i]
     return solutions
 
-A = np.array([
+A = [
     [5, 2, -1],
     [3, 7, 2],
     [-2, 4, 6]
-])
+]
 
-B = np.array([12, 15, 10])
+B = [12, 15, 10]
 
 print(gauss(A, B))
