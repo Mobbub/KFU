@@ -1,5 +1,5 @@
 def f(x):
-    return x ** 2
+    return x*2
 
 def trap(a, b, n):
     h = (b - a) / n
@@ -11,6 +11,6 @@ def trap(a, b, n):
 
 a = 0
 b = 1
-n = 100
+n = 10
 
 print(trap(a, b, n))

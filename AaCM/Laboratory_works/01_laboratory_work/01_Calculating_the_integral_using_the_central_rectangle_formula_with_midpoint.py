@@ -12,6 +12,6 @@ def centr_prym(a, b, n):
     
 a = 0
 b = 1
-n = 1000
+n = 7
 
 print(centr_prym(a, b, n))

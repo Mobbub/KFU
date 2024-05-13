@@ -1,8 +1,11 @@
+import math
+from math import *
+
 def f(x):
-    return x ** 2
+    return sin(x)
 
 def simp(a, b, n):
-    h = float(b - a) / n
+    h = (b - a) / n
     integ = f(a) + f(b)
     for i in range(1, n):
         integ += f(a + i * h) * (2 if i % 2 == 0 else 4)
@@ -10,6 +13,6 @@ def simp(a, b, n):
     
 a = 0
 b = 1
-n = 100
+n = 6
 
 print(simp(a, b, n))
