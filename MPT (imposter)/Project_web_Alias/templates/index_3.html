@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AliasWEB</title>
+    <link rel="stylesheet" href="../static/css/style.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-logo">
+                <nav>
+                    <div class="navbar">
+                        <ul class="nav_list">
+                            <li class="nav_item"><a href="/">Главная</a></li>
+                            <li class="nav_item" id="rules">Правила</li>
+                            <li class="nav_item" id="about-us">О нас</li>
+                        </ul>
+                    </div>
+                </nav>
+                <img src="../static/pictures/logo.png" alt="logo">
+            </div>
+            <div class="header-name">
+                <p>Alias<span>WEB</span></p>
+            </div>
+            <div class="rules-wrapper">
+                <div class="rules">
+                    <div class="rules-close">
+                        <img src="../static/pictures/plus.png" alt="close" id="rules-close">
+                    </div>
+                    <div class="rules-text">
+                        <div class="rules-text-wrapper">
+                            <h2>Правила игры</h2>
+                            <p>1. Игроки делятся на выбранное число команд (максимальное число команд - 5).</p>
+                            <p>2. Игра начинается с первой команды. Игрок  объясняет слово своим сокомандникам.</p>
+                            <p>3. Объясняющий не может использовать однокоренные слова, а также переводы на другие языки в своем объяснении.</p>
+                            <p>4. Если команда угадывает слово, она получает одно очко, если пропускает, не получает ничего. И так по кругу.</p>
+                            <p>5. Игра продолжается до тех пор, пока не истечет время или одна из команд не наберет нужное количество очков (время, а так же очки для победы выбираются пользователем при настройке игры).</p>
+                            <p>6. Побеждает команда, которая первая наберет фиксированное количество очков.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="about-us-wrapper">
+                <div class="about">
+                    <div class="about-close">
+                        <img src="../static/pictures/plus.png" alt="close" id="about-us-close">
+                    </div>
+                    <div class="about-text">
+                        <div class="about-text-wrapper">
+                            <h2>О нас</h2>
+                            <p>Над созданием сайта работали студенты первого курса Кафедры Компьютерной инженерии и Моделирования Крымского Федерального Университета им. В. И. Вернадского. В состав команды вошли: Рыбовалов Серафим Олегович (тим-лид, front-end разработчик) Демьяненко Виктория Сергеевна (дизайнер, front-end разработчик) Сокирко Анна Алексеевна (тестировщик, front-end разработчик) Соколов Виктор  Евгеньевич (back-end разработчик, тестировщик) Беликов Тимофей Михайлович (back-end разработчик)</p>
+                            <p>По всем вопросам обращаться: serafimrybovalov@gmail.com</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <main>
+        <section class="section-settings">
+            <div class="container">
+                <div class="next-button">
+                    <button class="next-button__button"><a href="save" class="next">Дальше</a></button>
+                </div>
+                <div class="settings-wrapper">
+                    <div class="settings-wrapper-item-title">
+                        <h2>Настройка Игры</h2>
+                    </div>
+                    <div class="settings-wrapper-item">
+                        <div class="settings-item-title">
+                            <h3>Длительность раунда</h3>
+                        </div>
+                        <div class="settiongs-item-stars">
+                            <div class="stars-item">
+                                <button id='btn1'><img src="../static/pictures/star.png" alt="star" id="star-time-1" class="stars-item-img"> 30</button>
+                            </div>
+                            <div class="stars-item">
+                                <button id='btn2'><img src="../static/pictures/star.png" alt="star" id="star-time-2" class="stars-item-img"> 40</button>
+                            </div>
+                            <div class="stars-item">
+                                <button id='btn3'><img src="../static/pictures/star.png" alt="star" id="star-time-3" class="stars-item-img"> 50</button>
+                            </div>
+                            <div class="stars-item">
+                                <button id='btn4'><img src="../static/pictures/star.png" alt="star" id="star-time-4" class="stars-item-img"> 60</button>
+                            </div>
+                            <div class="stars-item">
+                                <button id='btn5'><img src="../static/pictures/star.png" alt="star" id="star-time-5" class="stars-item-img"> 120</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="settings-wrapper-item">
+                        <div class="settings-item-title">
+                            <h3>Количество очков для победы</h3>
+                        </div>
+                        <div class="settiongs-item-stars">
+                            <div class="stars-item">
+                                <button id='btn6'><img src="../static/pictures/star.png" alt="star" id="star-score-1" class="stars-item-img"> 20</button>
+                            </div>
+                            <div class="stars-item">
+                                <button id='btn7'><img src="../static/pictures/star.png" alt="star" id="star-score-2" class="stars-item-img"> 30</button>
+                            </div>
+                            <div class="stars-item">
+                                <button id='btn8'><img src="../static/pictures/star.png" alt="star" id="star-score-3" class="stars-item-img"> 50</button>
+                            </div>
+                            <div class="stars-item">
+                                <button id='btn9'><img src="../static/pictures/star.png" alt="star" id="star-score-4" class="stars-item-img"> 60</button>
+                            </div>
+                            <div class="stars-item">
+                                <button id='btn10'><img src="../static/pictures/star.png" alt="star" id="star-score-5" class="stars-item-img"> 80</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <div class="container">
+            
+        </div>
+    </footer>
+    <script>
+        var rules_element = document.querySelector('.rules-wrapper');
+
+        document.getElementById("rules").onclick = function() {
+            rules_element.classList.toggle('rules-active')
+        };
+
+        document.getElementById("rules-close").onclick = function() {
+            rules_element.classList.toggle('rules-active')
+        };
+        var about_us = document.querySelector('.about-us-wrapper');
+        
+        document.getElementById("about-us").onclick = function() {
+            about_us.classList.toggle('about-active')
+        };
+    
+        document.getElementById("about-us-close").onclick = function() {
+            about_us.classList.toggle('about-active')
+        };
+    </script>
+    <script>
+        let click_first = false
+        let click_second = false
+        let button = false
+        let star_time = 0
+        let timeFlag
+        let star_score = 0
+        let scoreFlag
+        let element = document.querySelector(".next-button")
+
+        document.addEventListener('mouseover', function (event) {
+            if (event.target.alt === "star"){
+                if  (event.target.id[5] === "t"){
+                    count = event.target.id.at(-1);
+                    for (i = 1; i <= count; i++){
+                        document.getElementById("star-time-" + i).src='../static/pictures/star-active.png';
+                    }
+                }
+                else{
+                    count = event.target.id.at(-1);
+                    for (i = 1; i <= count; i++){
+                        document.getElementById("star-score-" + i).src='../static/pictures/star-active.png';
+                    }
+                }
+            }
+            else{
+                if (click_first === false){
+                    count = 1;
+                    for (i = 5; i >= count; i--){
+                        document.getElementById("star-time-" + i).src='../static/pictures/star.png';
+                    }
+                }
+                else{
+                    count = star_time;
+                    for (i = 5; i > count; i--){
+                        document.getElementById("star-time-" + i).src='../static/pictures/star.png';
+                    }
+                }
+                if (click_second === false){
+                    count = 1;
+                    for (i = 5; i >= count; i--){
+                        document.getElementById("star-score-" + i).src='../static/pictures/star.png';
+                    }
+                }
+                else{
+                    count = star_score;
+                    for (i = 5; i > count; i--){
+                        document.getElementById("star-score-" + i).src='../static/pictures/star.png';
+                    }
+                }
+            }
+          })
+        document.addEventListener('click', function (event) {
+            if (event.target.alt === "star"){
+                if (event.target.id[5] === "t"){
+                    click_first = true;
+                    star_time = event.target.id.at(-1);
+                    if (star_time === timeFlag){
+                        console.log(event.target.src)
+                        if (event.target.src.at(-5) === 'e'){
+                            click_first = false;
+                            timeFlag = 0
+                            star_time = 0
+                            for (k = 1; k <= 5; k++){
+                                document.getElementById("star-time-" + k).src='../static/pictures/star.png';
+                            }
+                        }
+                        else{
+                            timeFlag = event.target.id.at(-1);
+                            count = event.target.id.at(-1);
+                            console.log(count)
+                            for (i = 1; i <= count; i++){
+                                document.getElementById("star-time-" + i).src='../static/pictures/star-active.png';
+                            }
+                            for (j = 5; j > count; j--){
+                                document.getElementById("star-time-" + j).src='../static/pictures/star.png';
+                            }
+                        }
+                    }
+                    else{
+                        timeFlag = event.target.id.at(-1);
+                        count = event.target.id.at(-1);
+                        console.log(count)
+                        for (i = 1; i <= count; i++){
+                            document.getElementById("star-time-" + i).src='../static/pictures/star-active.png';
+                        }
+                        for (j = 5; j > count; j--){
+                            document.getElementById("star-time-" + j).src='../static/pictures/star.png';
+                        }
+                    }
+                }
+                else{
+                    click_second = true;
+                    star_score = event.target.id.at(-1);
+                    if (star_score === scoreFlag){
+                        if (event.target.src.at(-5) === 'e'){
+                            click_second = false;
+                            scoreFlag = 0
+                            star_score = 0
+                            for (k = 1; k <= 5; k++){
+                                document.getElementById("star-score-" + k).src='../static/pictures/star.png';
+                            }
+                        }
+                        else{
+                            scoreFlag = event.target.id.at(-1);
+                            count = event.target.id.at(-1);
+                            console.log(count)
+                            for (i = 1; i <= count; i++){
+                                document.getElementById("star-score-" + i).src='../static/pictures/star-active.png';
+                            }
+                            for (j = 5; j > count; j--){
+                                document.getElementById("star-score-" + j).src='../static/pictures/star.png';
+                            }
+                        }
+                    }
+                    else{
+                        scoreFlag = event.target.id.at(-1);
+                        count = event.target.id.at(-1);
+                        console.log(count)
+                        for (i = 1; i <= count; i++){
+                            document.getElementById("star-score-" + i).src='../static/pictures/star-active.png';
+                        }
+                        for (j = 5; j > count; j--){
+                            document.getElementById("star-score-" + j).src='../static/pictures/star.png';
+                        }
+                    }
+                }
+                if (star_score != 0 && star_time != 0 && button === false){
+                    element.classList.add("button-active");
+                    button = true;
+                }
+                else{
+                    element.classList.remove("button-active");
+                    button = false;
+                }
+            }
+        });
+
+        element.addEventListener('click', function(event){
+            window.location.href = 'themeList.html';
+        });
+    </script>
+    <script>
+        document.getElementById("btn1").addEventListener("click", function() {
+            var xhr = new XMLHttpRequest();
+            xhr.open("GET", "/save_set_1", true);
+            xhr.send();
+        });
+        </script>
+        
+        <script>
+        document.getElementById('btn2').addEventListener('click', function() {
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', '/save_set_2', true);
+            xhr.send();
+        });
+        </script>
+        
+        <script>
+        document.getElementById('btn3').addEventListener('click', function() {
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', '/save_set_3', true);
+            xhr.send();
+        });
+        </script>
+        
+        <script>
+        document.getElementById('btn4').addEventListener('click', function() {
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', '/save_set_4', true);
+            xhr.send();
+        });
+        </script>
+        
+        <script>
+        document.getElementById('btn5').addEventListener('click', function() {
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', '/save_set_5', true);
+            xhr.send();
+        });
+        </script>
+        
+        <script>
+        document.getElementById('btn6').addEventListener('click', function() {
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', '/save_set_6', true);
+            xhr.send();
+        });
+        </script>
+        
+        <script>
+        document.getElementById('btn7').addEventListener('click', function() {
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', '/save_set_7', true);
+            xhr.send();
+        });
+        </script>
+        
+        <script>
+        document.getElementById('btn8').addEventListener('click', function() {
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', '/save_set_8', true);
+            xhr.send();
+        });
+        </script>
+        
+        <script>
+        document.getElementById('btn9').addEventListener('click', function() {
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', '/save_set_9', true);
+            xhr.send();
+        });
+        </script>
+        
+        <script>
+        document.getElementById('btn10').addEventListener('click', function() {
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', '/save_set_10', true);
+            xhr.send();
+        });
+        </script>
+</body>
+</html>

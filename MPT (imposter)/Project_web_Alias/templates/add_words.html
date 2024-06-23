@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AliasWEB</title>
+    <link rel="stylesheet" href="../static/css/style.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-logo">
+                <nav>
+                    <div class="navbar">
+                        <ul class="nav_list">
+                            <li class="nav_item"><a href="/">Главная</a></li>
+                            <li class="nav_item" id="rules">Правила</li>
+                        </ul>
+                    </div>
+                </nav>
+                <img src="../static/pictures/logo.png" alt="logo">
+            </div>
+            <div class="header-name">
+                <p>Alias<span>WEB</span></p>
+            </div>
+            <div class="rules-wrapper">
+                <div class="rules">
+                    <div class="rules-close">
+                        <img src="../static/pictures/plus.png" alt="close" id="rules-close">
+                    </div>
+                    <div class="rules-text">
+                        <div class="rules-text-wrapper">
+                            <h2>Правила игры</h2>
+                            <p>1. Игроки делятся на выбранное число команд (максимальное число команд - 5).</p>
+                            <p>2. Игра начинается с первой команды. Игрок  объясняет слово своим сокомандникам.</p>
+                            <p>3. Объясняющий не может использовать однокоренные слова, а также переводы на другие языки в своем объяснении.</p>
+                            <p>4. Если команда угадывает слово, она получает одно очко, если пропускает, не получает ничего. И так по кругу.</p>
+                            <p>5. Игра продолжается до тех пор, пока не истечет время или одна из команд не наберет нужное количество очков (время, а так же очки для победы выбираются пользователем при настройке игры).</p>
+                            <p>6. Побеждает команда, которая первая наберет фиксированное количество очков.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <main>
+        <section class="section-my-words">
+            <div class="container">
+                <div class="section-my-words_wrapper">
+                    <div class="my-words_text">
+                        <div class="my-words__title">
+                            <h1>Добавление слов в категорию 'Свой набор'</h1>
+                            <div class="words_add">
+                                <input type="text" id="wordInput" placeholder="Введите слово">
+                                <button id="addWord"><img src="../static/pictures/plus.png" alt="close"></button>
+                            </div>
+                        </div>
+                        <div class="my-words__list">
+                            <ul id="wordList">
+                                {% for word in words %}
+                                <li>{{ word }} <button class="removeWord" data-word="{{ word }}"><img src="../static/pictures/trash.png" alt="trash"></button></li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="my-words__button">
+                        <div class="back-h">
+                            <a href="save" class="back">Дальше</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <div class="container">
+            
+        </div>
+    </footer>
+    <script>
+        var rules_element = document.querySelector('.rules-wrapper');
+
+        document.getElementById("rules").onclick = function() {
+            rules_element.classList.toggle('rules-active')
+        };
+
+        document.getElementById("rules-close").onclick = function() {
+            rules_element.classList.toggle('rules-active')
+        };
+    </script>
+
+    <script>
+        $(document).ready(function() {
+            $('#addWord').click(function() {
+                var word = $('#wordInput').val();
+                if (word) {
+                    $.ajax({
+                        url: '/add_word',
+                        type: 'POST',
+                        contentType: 'application/json',
+                        data: JSON.stringify({'word': word}),
+                        success: function(response) {
+                            $('#wordInput').val('');
+                            updateWordList(response.words);
+                        }
+                    });
+                }
+            });
+
+            $('#wordList').on('click', '.removeWord', function() {
+                var word = $(this).data('word');
+                $.ajax({
+                    url: '/remove_word',
+                    type: 'POST',
+                    contentType: 'application/json',
+                    data: JSON.stringify({'word': word}),
+                    success: function(response) {
+                        updateWordList(response.words);
+                    }
+                });
+            });
+        });
+
+        function updateWordList(words) {
+            var wordList = $('#wordList');
+            wordList.empty();
+            $.each(words, function(index, word) {
+                wordList.append('<li>' + word + ' <button class="removeWord" data-word="' + word + '"><img src="../static/pictures/trash.png" alt="trash"></button></button></li>');
+            });
+        }
+    </script>
+</body>
+</html>
+
