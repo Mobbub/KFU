@@ -23,12 +23,14 @@ int getPriority(char operation)
     {
         return 3;
     }
+    return 0;
 }
 
 string infixToPostfix(const string& infix)
 {
     string postfix;
     stack<char> operators;
+
     for (char c : infix)
     {
         if (isdigit(c))
@@ -47,6 +49,7 @@ string infixToPostfix(const string& infix)
                 postfix += operators.top();
                 operators.pop();
             }
+
             operators.pop(); // remove '('
         }
         else if (isOperator(c))
@@ -58,16 +61,19 @@ string infixToPostfix(const string& infix)
                 postfix += operators.top();
                 operators.pop();
             }
+
             postfix += " ";
             operators.push(c);
         }
     }
+
     while (!operators.empty())
     {
         postfix += " ";
         postfix += operators.top();
         operators.pop();
     }
+
     return postfix;
 }
 
@@ -75,6 +81,8 @@ int main()
 {
     string infixExpression;
     getline(cin, infixExpression);
+
     string postfixExpression = infixToPostfix(infixExpression);
+
     cout << postfixExpression << endl;
 }
