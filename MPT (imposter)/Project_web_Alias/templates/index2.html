@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AliasWEB</title>
+    <link rel="stylesheet" href="../static/css/style.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-logo">
+                <nav>
+                    <div class="navbar">
+                        <ul class="nav_list">
+                            <li class="nav_item"><a href="/">Главная</a></li>
+                            <li class="nav_item" id="rules">Правила</li>
+                            <li class="nav_item" id="about-us">О нас</li>
+                        </ul>
+                    </div>
+                </nav>
+                <img src="../static/pictures/logo.png" alt="logo">
+            </div>
+            <div class="header-name">
+                <p>Alias<span>WEB</span></p>
+            </div>
+            <div class="rules-wrapper">
+                <div class="rules">
+                    <div class="rules-close">
+                        <img src="../static/pictures/plus.png" alt="close" id="rules-close">
+                    </div>
+                    <div class="rules-text">
+                        <div class="rules-text-wrapper">
+                            <h2>Правила игры</h2>
+                            <p>1. Игроки делятся на выбранное число команд (максимальное число команд - 5).</p>
+                            <p>2. Игра начинается с первой команды. Игрок  объясняет слово своим сокомандникам.</p>
+                            <p>3. Объясняющий не может использовать однокоренные слова, а также переводы на другие языки в своем объяснении.</p>
+                            <p>4. Если команда угадывает слово, она получает одно очко, если пропускает, не получает ничего. И так по кругу.</p>
+                            <p>5. Игра продолжается до тех пор, пока не истечет время или одна из команд не наберет нужное количество очков (время, а так же очки для победы выбираются пользователем при настройке игры).</p>
+                            <p>6. Побеждает команда, которая первая наберет фиксированное количество очков.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="about-us-wrapper">
+                <div class="about">
+                    <div class="about-close">
+                        <img src="../static/pictures/plus.png" alt="close" id="about-us-close">
+                    </div>
+                    <div class="about-text">
+                        <div class="about-text-wrapper">
+                            <h2>О нас</h2>
+                            <p>Над созданием сайта работали студенты первого курса Кафедры Компьютерной инженерии и Моделирования Крымского Федерального Университета им. В. И. Вернадского. В состав команды вошли: Рыбовалов Серафим Олегович (тим-лид, front-end разработчик) Демьяненко Виктория Сергеевна (дизайнер, front-end разработчик) Сокирко Анна Алексеевна (тестировщик, front-end разработчик) Соколов Виктор  Евгеньевич (back-end разработчик, тестировщик) Беликов Тимофей Михайлович (back-end разработчик)</p>
+                            <p>По всем вопросам обращаться: serafimrybovalov@gmail.com</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <main>
+        <section class="section-change-main">
+            <div class="container">
+                <div class="change-main">
+                    <div class="change-main__title">
+                        <h1>Выберите команду</h1>    
+                    </div>
+                    <div class="change-main__commands">
+                        <form method = "post">
+                            <div class="main-commands-item">
+                                <img src="../static/pictures/change-image-1.png" alt="change-image-1" id="command_1" class="command_image">
+                                <input type="text" name="team_1" value="{{ team_1 }}" placeholder="Введите название команды" class="main_input">
+                                <input type="hidden" name="image_1" value="1" id="image_command_1">
+                            </div>
+                            <div class="main-commands-item">
+                                <img src="../static/pictures/change-image-1.png" alt="change-image-1" id="command_2" class="command_image">
+                                <input type="text" name="team_2" value="{{ team_2 }}" placeholder="Введите название команды" class="main_input">
+                                <input type="hidden" name="image_2" value="1" id="image_command_2">
+                            </div>
+                            <div class="main-commands-item null">
+                                <img src="../static/pictures/change-image-1.png" alt="change-image-1" id="command_3" class="command_image">
+                                <input type="text" name="team_3" value="{{ team_3 }}" placeholder="Введите название команды" class="main_input">
+                                <input type="hidden" name="image_3" value="1" id="image_command_3">
+                            </div>
+                            <div class="main-commands-item null">
+                                <img src="../static/pictures/change-image-1.png" alt="change-image-1" id="command_4" class="command_image">
+                                <input type="text" name="team_4" value="{{ team_4 }}" placeholder="Введите название команды" class="main_input">
+                                <input type="hidden" name="image_4" value="1" id="image_command_4">
+                            </div>
+                            <div class="main-commands-item null">
+                                <img src="../static/pictures/change-image-1.png" alt="change-image-1" id="command_5" class="command_image">
+                                <input type="text" name="team_5" value="{{ team_5 }}" placeholder="Введите название команды" class="main_input">
+                                <input type="hidden" name="image_5" value="1" id="image_command_5">
+                            </div>
+                            <div class="main-commands-plus">
+                                <div class="main-commands-plus__wrapper">
+                                    <img src="../static/pictures/plus.png" alt="plus">
+                                </div>
+                            </div>
+                            <div class="main-commands-button">
+                                <form method = "method">
+                                    <button class="btnreset btnforms" type="submit">Дальше</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <div class="container">
+            
+        </div>
+    </footer>
+    <script>
+        var rules_element = document.querySelector('.rules-wrapper');
+
+        document.getElementById("rules").onclick = function() {
+            rules_element.classList.toggle('rules-active')
+        };
+
+        document.getElementById("rules-close").onclick = function() {
+            rules_element.classList.toggle('rules-active')
+        };
+        var about_us = document.querySelector('.about-us-wrapper');
+        
+        document.getElementById("about-us").onclick = function() {
+            about_us.classList.toggle('about-active')
+        };
+    
+        document.getElementById("about-us-close").onclick = function() {
+            about_us.classList.toggle('about-active')
+        };
+    </script>
+
+    <script>
+        let add = document.querySelector(".main-commands-plus");
+        let items = document.querySelectorAll(".main-commands-item");
+        let input = document.querySelectorAll("input");
+        let plus = document.querySelector(".main-commands-plus__wrapper");
+        let plus1 = document.querySelector(".main-commands-plus");
+        const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
+        let count = 0
+        add.addEventListener('click',async function(){
+            items[count + 2].classList.toggle("null")
+            if (count + 2 === 4){
+                add.classList.add("null")
+            }
+            count += 1
+            items = document.querySelectorAll(".main-commands-item");
+            if (count === 1){
+                for(k = 0; k < 10; k++){
+                    input[k].style.width = "300px"
+                }
+                for (i=0; i < 5; i++){
+                    items[i].classList.add("sectond-img")
+                    plus1.style.height = "330px"
+                    plus.style.width = "230px"
+                    plus.style.height = "230px"
+                    console.log(input[i].style.width)
+                }
+            }
+            if (count === 2){
+                for(o = 0; o < 10; o++){
+                    input[o].style.width = "250px"
+                }
+                for (j=0; j < 5; j++){
+                    items[j].classList.remove("sectond-img")
+                    items[j].classList.add("third-img")
+                    plus1.style.height = "280px"
+                    plus.style.width = "180px"
+                    plus.style.height = "180px"
+                }
+            }
+        })
+
+    </script>
+
+    <script>
+        var command_image = new Map();
+        document.addEventListener('click', function (event1) {
+                if (event1.target.tagName === "IMG"){
+                    if (event1.target.src.at(-5) !== 's'){
+                        if ((Number(event1.target.src.at(-5)) + 1) === 6){
+                            event1.target.src = '../static/pictures/change-image-1.png'
+                        }
+                        else{
+                            event1.target.src = '../static/pictures/change-image-' + (Number(event1.target.src.at(-5)) + 1) + '.png'
+                            command_image.set(event.target.id, (Number(event1.target.src.at(-5)) + 1));
+                            document.getElementById('image_' + event.target.id).value = (Number(event1.target.src.at(-5)));
+
+                        }
+                    }
+                }
+        })
+
+    </script>
+
+    <script>
+        const inp1 = document.querySelectorAll(".main_input");
+        console.log(inp1)
+        const sleep2 = ms => new Promise(resolve => setTimeout(resolve, ms));
+        let place = document.querySelectorAll('.change-main__commands');
+        let button_next = document.querySelector('.main-commands-button')
+        let commands = 0
+        let test = []
+
+
+        document.addEventListener('keydown',async function(){
+            await sleep2(100)
+            for (i = 0; i < inp1.length; i++)
+                if (inp1[i].value !== ''){
+                    commands += 1
+                }
+            if (commands >= 2){
+                button_next.classList.add('active-button')
+            }
+            else{
+                button_next.classList.remove('active-button')
+            }
+            commands = 0
+        })
+    </script>
+</body>
+</html>
