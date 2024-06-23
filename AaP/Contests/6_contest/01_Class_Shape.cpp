@@ -13,6 +13,7 @@ private:
     int width;
 public:
     Rectangle(int a, int b) : length(a), width(b) {}
+
     double getPerimeter() {
         return 2 * (length + width);
     }
@@ -23,6 +24,7 @@ private:
     int radius;
 public:
     Circle(int r) : radius(r) {}
+
     double getPerimeter() {
         return 2 * M_PI * radius;
     }
@@ -35,10 +37,12 @@ private:
     int sideC;
 public:
     Triangle(int a, int b, int c) : sideA(a), sideB(b), sideC(c) {}
+
     double getPerimeter() {
         if (sideA + sideB > sideC && sideA + sideC > sideB && sideB + sideC > sideA) {
             return sideA + sideB + sideC;
         } else {
+            return 0;
         }
     }
 };
