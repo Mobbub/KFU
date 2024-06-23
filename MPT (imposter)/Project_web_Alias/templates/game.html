@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AliasWEB</title>
+    <link rel="stylesheet" href="../static/css/style.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-logo">
+                <nav>
+                    <div class="navbar">
+                        <ul class="nav_list">
+                            <li class="nav_item"><a href="/">Главная</a></li>
+                            <li class="nav_item" id="rules">Правила</li>
+                            <li class="nav_item" id="about-us">О нас</li>
+                        </ul>
+                    </div>
+                </nav>
+                <img src="../static/pictures/logo.png" alt="logo">
+            </div>
+            <div class="header-name">
+                <p>Alias<span>WEB</span></p>
+            </div>
+            <div class="rules-wrapper">
+                <div class="rules">
+                    <div class="rules-close">
+                        <img src="../static/pictures/plus.png" alt="close" id="rules-close">
+                    </div>
+                    <div class="rules-text">
+                        <div class="rules-text-wrapper">
+                            <h2>Правила игры</h2>
+                            <p>1. Игроки делятся на выбранное число команд (максимальное число команд - 5).</p>
+                            <p>2. Игра начинается с первой команды. Игрок  объясняет слово своим сокомандникам.</p>
+                            <p>3. Объясняющий не может использовать однокоренные слова, а также переводы на другие языки в своем объяснении.</p>
+                            <p>4. Если команда угадывает слово, она получает одно очко, если пропускает, не получает ничего. И так по кругу.</p>
+                            <p>5. Игра продолжается до тех пор, пока не истечет время или одна из команд не наберет нужное количество очков (время, а так же очки для победы выбираются пользователем при настройке игры).</p>
+                            <p>6. Побеждает команда, которая первая наберет фиксированное количество очков.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="about-us-wrapper">
+                <div class="about">
+                    <div class="about-close">
+                        <img src="../static/pictures/plus.png" alt="close" id="about-us-close">
+                    </div>
+                    <div class="about-text">
+                        <div class="about-text-wrapper">
+                            <h2>О нас</h2>
+                            <p>Над созданием сайта работали студенты первого курса Кафедры Компьютерной инженерии и Моделирования Крымского Федерального Университета им. В. И. Вернадского. В состав команды вошли: Рыбовалов Серафим Олегович (тим-лид, front-end разработчик) Демьяненко Виктория Сергеевна (дизайнер, front-end разработчик) Сокирко Анна Алексеевна (тестировщик, front-end разработчик) Соколов Виктор  Евгеньевич (back-end разработчик, тестировщик) Беликов Тимофей Михайлович (back-end разработчик)</p>
+                            <p>По всем вопросам обращаться: serafimrybovalov@gmail.com</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <main>
+        <section class="section-game">
+            <div class="container">
+                <div class="game-wrapper">
+                    <div class="game-wrapper_words-list-button">
+                        <img src="../static/pictures/list.png" alt="list" class="list" id="list">
+                    </div>
+                    <div class="game-wrapper_start-game">
+                        <button id="start">Начать игру</button>
+                    </div>
+                    <div class="game-wrapper_words">
+                        <p>Угаданные слова: <span id="guessed-words"></span></p>
+                    </div>
+                    <div class="game-wrapper_now-team">
+                        <h2 id = "name_team">{{ team_1[0] }}</h2>
+                    </div>
+                    <div class="game-wrapper_next-team">
+                        <button id="next_team" disabled>Следующая команда</button>
+                    </div>
+                    <div class="game-wrapper__time">
+                        <p class="timer"><span id="timer"></span></p>
+                    </div>
+                    <div class="game-wrapper__card" id="word-card">
+                        <h2><span id="word"></span></h2>
+                    </div>
+                    <div class="game-wrapper-buttons">
+                        <button id="guess_pr" disabled><img src="../static/pictures/x.png" alt="x"></button>
+                        <button id="guess" disabled><img src="../static/pictures/check mark.png" alt="check mark"></button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <div class="container">
+            
+        </div>
+    </footer>
+    <script>
+        var rules_element = document.querySelector('.rules-wrapper');
+        var list = document.querySelector('.game-wrapper_words');
+
+        document.getElementById("list").onclick = function() {
+            list.classList.toggle('list-active')
+        };
+
+        document.getElementById("rules").onclick = function() {
+            rules_element.classList.toggle('rules-active')
+        };
+
+        document.getElementById("rules-close").onclick = function() {
+            rules_element.classList.toggle('rules-active')
+        };
+
+        var about_us = document.querySelector('.about-us-wrapper');
+        
+        document.getElementById("about-us").onclick = function() {
+            about_us.classList.toggle('about-active')
+        };
+    
+        document.getElementById("about-us-close").onclick = function() {
+            about_us.classList.toggle('about-active')
+        };
+    </script>
+
+    <script>
+
+        let start_button1 = document.getElementById('start');
+        start_button1.onclick = function(){
+            start_button1.classList.toggle("null")
+        }
+
+    </script>
+
+    <script>
+        let element = document.getElementById('word-card')
+        let element2 = document.getElementById('word-card')
+        let betweenFlag = true
+        let test = false
+        let screenX = element.offsetLeft
+        let sepia = 0
+        let hue_rotate = ''
+        let start_button = document.getElementById('start');
+        const sleep2 = ms => new Promise(resolve => setTimeout(resolve, ms));
+        element.onmousedown = function(e) {
+            moveAt(e);
+            function moveAt(e) {
+                if ((e.pageX - element.offsetWidth / 2) >= (innerWidth /100) && (e.pageX - element.offsetWidth / 2) <= (innerWidth - (innerWidth / 100 + element.clientWidth)))
+                    element.style.left = e.pageX - element.offsetWidth / 2 + 'px';
+                    if ((e.pageX - element.offsetWidth / 2) > screenX){
+                        hue_rotate = "%) hue-rotate(100deg)"
+                    }
+                    else{
+                        hue_rotate = "%) hue-rotate(320deg)"
+                    }
+                    sepia = (1 - ((innerWidth - screenX) - Math.abs(screenX - (e.pageX - element.offsetWidth / 2)))/(innerWidth - screenX)) * 100
+                    element.style.filter = 'sepia(' + sepia + hue_rotate
+            }
+            document.onmousemove = function(e) {
+              moveAt(e);
+            }
+            element.onmouseup = function() {
+              document.onmousemove = null;
+              element.onmouseup = null;
+              element.style.left = screenX + 'px';
+              element.style.filter = 'sepia(0%) hue-rotate(0deg)'
+            }
+          }
+        
+    </script>
+    <script>
+        let chet_words = 0;
+        function getTime() {
+            fetch('/time_1')
+                .then(res => {
+                    console.log(res);
+                    return res.json();
+                })
+                .then(data => time = data.time_1)
+                .catch(error => console.error(error));
+            return time;
+        }
+        var time = getTime();
+
+        $(document).ready(function() {
+            chet_words = 0;
+            var startTime = null;
+            var flagPause = false;
+            var timeLeft = time; // дл раудна
+            var startFlag = false 
+            var timeUpFlag = false; // Флаг для отслеживания истечения времени
+            var intervalId; // ID интервала для таймера
+            var guessedAfterTimeUp = false;  // Флаг для отслеживания нажатия кнопки "Отгадал" после истечения времени
+            var i = 0
+            var pause = document.getElementById("pause")
+            document.addEventListener('click', function(event){
+                if (event.target.alt === 'pause'){
+                    if (flagPause === false){
+                        flagPause = true
+                        $("#guess").prop("disabled", true);
+                        $("#guess_pr").prop("disabled", true);
+                        event.target.src = '../static/pictures/play.png'
+                    }
+                    else{
+                        flagPause = false
+                        $("#guess").prop("disabled", false);
+                        $("#guess_pr").prop("disabled", false);
+                        event.target.src = '../static/pictures/pause.png'
+                    }
+                }
+            })
+
+            // Функция для обновления таймера
+            function updateTimer() {
+                var currentTime = 0
+                var time_local = time
+                if (flagPause === false){
+                    //currentTime = Math.floor(new Date().getTime() / 1000);
+                    timeLeft = time_local - i;
+                    i++
+                }
+                else {
+                    timeLeft = timeLeft;    
+                }
+                if (timeLeft < 0) {
+                    timeLeft = 0;
+                    i = 0
+                    timeUpFlag = true; // Устанавливаем флаг истечения времени
+                    $("#timer").text("Время вышло!");
+                    clearInterval(intervalId); // Останавливаем интервал таймера
+                    $("#guess").prop("disabled", false); // Активируем кнопку "Отгадал"
+                    $("#start").prop("disabled", true); // Деактивируем кнопку "Начать игру"
+                    //startFlag = false
+                } else {
+                    $("#timer").text(Math.trunc(timeLeft) + " секунд");
+                }
+            }
+
+            $("#next_team").click(function() {
+                start_button.classList.toggle("null")
+                saveTeam();
+            });
+
+            function updateTeam(chet, name_team) {
+                $.ajax({
+                    type: 'POST',
+                    url: '/name_kom',
+                    data: JSON.stringify({ 'team_1': name_team, 'chet': chet }),
+                    contentType: 'application/json; charset=utf-8',
+                    dataType: 'json',
+                    success: function(data) {
+                        $("#name_team").text(data.team_1);
+                        if (data.red_flag) {
+                            //similar behavior as an HTTP redirect
+                            window.location.replace("/result");
+                        }
+                    },
+                    error: function(error) {
+                        console.error(error);
+                    }
+                });
+                $("#next_team").prop("disabled", true); // Активируем кнопку "Отгадал"
+                $("#start").prop("disabled", false);
+                //document.getElementById("name_team").innerHTML = $("#word").text(data.team_1);
+            }
+            
+            //$("#next_team").click(function() {
+            //    $.post("/start_game", startGame);
+            //    saveTeam();
+            //    updateTeam();
+            //});
+            
+            function saveTeam() {
+            //    //document.getElementById("guessed-words")
+            //    //.innerHTML +=
+            //    //`<span class = "id` + chet_words + `">` + guessedWords[chet_words] + `</span>
+            //    //<button class = "guessedWords_btn_pr id` + chet_words + `"> 0 </button>`;
+                $('span#guessed-words').each(function(index,el) { 
+                    var chet = 0
+                    var name_team = $('#name_team').text();
+                    var ar = el.children
+                    for (var i=0; i < ar.length; i++) {
+                        if (ar[i].tagName == "BUTTON") {
+                            if (ar[i].textContent == " 1 ") {
+                                chet = chet + 1;
+                            }
+                        }
+                    }
+                    updateTeam(chet, name_team)
+                })
+                //updateTeam(chet, name_team)
+            }
+
+            // Функция для обновления списка угаданных слов
+            function updateGuessedWords(guessedWords) {
+                //$("#guessed-words").text(guessedWords.join(", "));
+                if (guessedWords[0] === undefined) {
+                    document.getElementById("guessed-words").innerHTML = ``;        
+                    chet_words = 0;
+                } else {
+                    document.getElementById("guessed-words")
+                    .innerHTML +=
+                    `<span class = "id` + chet_words + `">` + guessedWords[chet_words] + `</span>
+                    <button class = "guessedWords_btn id` + chet_words + `"> 1 </button>`;
+                    chet_words=chet_words+1;    
+                }
+                //<span class = "id{{ chet_words }}">guessedWords.join(", ")</span> <button class = "id{{ chet_words }}">chet_words</button>
+            }
+
+            // Функция для обновления списка угаданных слов
+            function updateGuessedWords_pr(guessedWords) {
+                //$("#guessed-words").text(guessedWords.join(", "));
+                if (guessedWords[0] === undefined) {
+                    document.getElementById("guessed-words").innerHTML = ``;        
+                    chet_words = 0;
+                } else {
+                    document.getElementById("guessed-words")
+                    .innerHTML +=
+                    `<span class = "id` + chet_words + `">` + guessedWords[chet_words] + `</span>
+                    <button class = "guessedWords_btn_pr id` + chet_words + `"> 0 </button>`;
+                    chet_words=chet_words+1;    
+                }
+                //<span class = "id{{ chet_words }}">guessedWords.join(", ")</span> <button class = "id{{ chet_words }}">chet_words</button>
+            }
+
+            // Функция для начала игры
+            function startGame(data) {
+                $("#word").text(data.word);
+                startTime = data.start_time;
+                $("#guess").prop("disabled", false); // Активируем кнопку "Отгадал"
+                $("#guess_pr").prop("disabled", false); // Активируем кнопку "Пропустить"
+                $("#start").prop("disabled", true);
+                updateGuessedWords(data.guessed_words);
+                updateGuessedWords_pr(data.guessed_words);
+                timeUpFlag = false; // Сбрасываем флаг истечения времени
+                guessedAfterTimeUp = data.guessed_after_time_up; // Обновляем флаг нажатия кнопки "Отгадал" после истечения времени
+                intervalId = setInterval(updateTimer, 1000); // Запускаем интервал для таймера
+            }
+
+            // Обработчик для начала игры
+            $("#start").click(function() {
+                $.post("/start_game", startGame);
+                startFlag = true
+                betweenFlag = true
+            });
+            
+            //function viborTeam() {
+            //    const $vibor = document.querySelector('#vibor');
+            //    let $divElem = document.createElement('div');
+            //    $divElem.innerHTML = `<h3>Выбор команды</h3>`;
+            //    for (i=0; i < team_1.length; i++) {
+            //        $divElem.innerHTML = `<button>`+ team_1[i] +`</button>`;
+            //    }
+            //    $vibor.after($divElem);
+            //}
+
+            // Обработчик для кнопки "Отгадал"
+
+            document.addEventListener('mousedown', function(event3){
+                if (event3.target.id === 'word-card' || event3.target.id === 'word'){
+                    test = true
+                    document.addEventListener('mouseup', function(event4){
+                        if (event4.screenX >= 1500 && test === true && startFlag === true && flagPause === false && betweenFlag === true){
+                            test = false
+                            if (!timeUpFlag || !guessedAfterTimeUp) { // Проверяем, что время не истекло или кнопка "Отгадал" не была нажата после истечения времени
+                                $.post("/game", {action: "guess"}, function(data) {
+                                    if (data.error) {
+                                        alert(data.error);
+                                    } else {
+                                        $("#word").text(data.new_word);
+                                        if (timeUpFlag) {
+                                            $("#word").text('');
+                                        }
+                                        updateGuessedWords(data.guessed_words);
+                                        if (timeUpFlag) {
+                                            startTime = null; // Останавливаем игру
+                                            timeUpFlag = false; // Сбрасываем флаг истечения времени
+                                            guessedAfterTimeUp = data.guessed_after_time_up; // Обновляем флаг нажатия кнопки "Отгадал" после истечения времени
+                                            alert("Игра окончена!");
+                                            betweenFlag = false
+                                            $("#start").prop("disabled", !guessedAfterTimeUp); // Деактивируем или активируем кнопку "Начать игру" в зависимости от флага guessedAfterTimeUp
+                                            $("#guess").prop("disabled", !guessedAfterTimeUp); // Активируем или деактивируем кнопку "Отгадал" в зависимости от флага guessedAfterTimeUp
+                                            $("#guess_pr").prop("disabled", !guessedAfterTimeUp);
+                                            $("#next_team").prop("disabled", guessedAfterTimeUp);
+                                        }
+                                    }
+                                });
+                            }
+                        }
+                        else{
+                            if (event4.screenX <= 450 && test === true && startFlag === true && flagPause === false && betweenFlag === true){
+                                test = false
+                                if (!timeUpFlag || !guessedAfterTimeUp) { // Проверяем, что время не истекло или кнопка "Отгадал" не была нажата после истечения времени
+                                    $.post("/game", {action: "guess_pr"}, function(data) {
+                                        if (data.error) {
+                                            alert(data.error);
+                                        } else {
+                                            $("#word").text(data.new_word);
+                                            if (timeUpFlag) {
+                                                $("#word").text('');
+                                            }
+                                            updateGuessedWords_pr(data.guessed_words);
+                                            if (timeUpFlag) {
+                                                startTime = null; // Останавливаем игру
+                                                timeUpFlag = false; // Сбрасываем флаг истечения времени
+                                                guessedAfterTimeUp = data.guessed_after_time_up; // Обновляем флаг нажатия кнопки "Отгадал" после истечения времени
+                                                alert("Игра окончена!");
+                                                betweenFlag = false
+                                                $("#start").prop("disabled", !guessedAfterTimeUp); // Деактивируем или активируем кнопку "Начать игру" в зависимости от флага guessedAfterTimeUp
+
+                                                $("#guess_pr").prop("disabled", !guessedAfterTimeUp); // Активируем или деактивируем кнопку "Отгадал" в зависимости от флага guessedAfterTimeUp
+                                                $("#guess").prop("disabled", !guessedAfterTimeUp);
+                                                $("#next_team").prop("disabled", guessedAfterTimeUp);
+                                            }
+                                        }
+                                    });
+                                }
+                            }
+                        }
+                    })
+                }
+            })
+
+
+            //element2.onmousedown = function(event3){
+            //        if (event3.screenX >= 1500){
+            //            co
+            //       }
+                
+            //}
+
+            $("#guess").click(function(){
+                if (!timeUpFlag || !guessedAfterTimeUp) { // Проверяем, что время не истекло или кнопка "Отгадал" не была нажата после истечения времени
+                    $.post("/game", {action: "guess"}, function(data) {
+                        if (data.error) {
+                            alert(data.error);
+                        } else {
+                            $("#word").text(data.new_word);
+                            if (timeUpFlag) {
+                                $("#word").text('');
+                            }
+                            updateGuessedWords(data.guessed_words);
+                            if (timeUpFlag) {
+                                startTime = null; // Останавливаем игру
+                                timeUpFlag = false; // Сбрасываем флаг истечения времени
+                                guessedAfterTimeUp = data.guessed_after_time_up; // Обновляем флаг нажатия кнопки "Отгадал" после истечения времени
+                                alert("Игра окончена!");
+                                betweenFlag = false
+                                $("#start").prop("disabled", !guessedAfterTimeUp); // Деактивируем или активируем кнопку "Начать игру" в зависимости от флага guessedAfterTimeUp
+                                $("#guess").prop("disabled", !guessedAfterTimeUp); // Активируем или деактивируем кнопку "Отгадал" в зависимости от флага guessedAfterTimeUp
+                                $("#guess_pr").prop("disabled", !guessedAfterTimeUp);
+                                $("#next_team").prop("disabled", guessedAfterTimeUp);
+                            }
+                        }
+                    });
+                }
+            });
+
+            $('body').delegate('.guessedWords_btn', 'click', function(){
+                $(this).text(function(i, text){
+                    return text == "0" ? "1" : "0";
+                })
+            });
+
+            // Обработчик Пропустить
+            $("#guess_pr").click(function() {
+                if (!timeUpFlag || !guessedAfterTimeUp) { // Проверяем, что время не истекло или кнопка "Отгадал" не была нажата после истечения времени
+                    $.post("/game", {action: "guess_pr"}, function(data) {
+                        if (data.error) {
+                            alert(data.error);
+                        } else {
+                            $("#word").text(data.new_word);
+                            if (timeUpFlag) {
+                                $("#word").text('');
+                            }
+                            updateGuessedWords_pr(data.guessed_words);
+                            if (timeUpFlag) {
+                                startTime = null; // Останавливаем игру
+                                timeUpFlag = false; // Сбрасываем флаг истечения времени
+                                guessedAfterTimeUp = data.guessed_after_time_up; // Обновляем флаг нажатия кнопки "Отгадал" после истечения времени
+                                betweenFlag = false
+                                $("#start").prop("disabled", !guessedAfterTimeUp); // Деактивируем или активируем кнопку "Начать игру" в зависимости от флага guessedAfterTimeUp
+                                $("#guess_pr").prop("disabled", !guessedAfterTimeUp); // Активируем или деактивируем кнопку "Отгадал" в зависимости от флага guessedAfterTimeUp
+                                $("#guess").prop("disabled", !guessedAfterTimeUp);
+                                $("#next_team").prop("disabled", guessedAfterTimeUp);
+                            }
+                        }
+                    });
+                }
+            });
+
+            $('body').delegate('.guessedWords_btn_pr', 'click', function(){
+                $(this).text(function(i, text){
+                    return text == "1" ? "0" : "1";
+                })
+            });
+        });
+    </script>
+</body>
+</html>

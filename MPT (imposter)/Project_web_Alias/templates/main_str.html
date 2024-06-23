@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AliasWEB</title>
+    <link rel="stylesheet" href="../static/css/style.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-logo">
+                <nav>
+                    <div class="navbar">
+                        <ul class="nav_list">
+                            <li class="nav_item"><a href="/">Главная</a></li>
+                            <li class="nav_item" id="rules">Правила</li>
+                            <li class="nav_item" id="about-us">О нас</li>
+                        </ul>
+                    </div>
+                </nav>
+                <img src="../static/pictures/logo.png" alt="logo">
+            </div>
+            <div class="header-name">
+                <p>Alias<span>WEB</span></p>
+            </div>
+            <div class="rules-wrapper">
+                <div class="rules">
+                    <div class="rules-close">
+                        <img src="../static/pictures/plus.png" alt="close" id="rules-close">
+                    </div>
+                    <div class="rules-text">
+                        <div class="rules-text-wrapper">
+                            <h2>Правила игры</h2>
+                            <p>1. Игроки делятся на выбранное число команд (максимальное число команд - 5).</p>
+                            <p>2. Игра начинается с первой команды. Игрок  объясняет слово своим сокомандникам.</p>
+                            <p>3. Объясняющий не может использовать однокоренные слова, а также переводы на другие языки в своем объяснении.</p>
+                            <p>4. Если команда угадывает слово, она получает одно очко, если пропускает, не получает ничего. И так по кругу.</p>
+                            <p>5. Игра продолжается до тех пор, пока не истечет время или одна из команд не наберет нужное количество очков (время, а так же очки для победы выбираются пользователем при настройке игры).</p>
+                            <p>6. Побеждает команда, которая первая наберет фиксированное количество очков.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="about-us-wrapper">
+                <div class="about">
+                    <div class="about-close">
+                        <img src="../static/pictures/plus.png" alt="close" id="about-us-close">
+                    </div>
+                    <div class="about-text">
+                        <div class="about-text-wrapper">
+                            <h2>О нас</h2>
+                            <p>Над созданием сайта работали студенты первого курса Кафедры Компьютерной инженерии и Моделирования Крымского Федерального Университета им. В. И. Вернадского. В состав команды вошли: Рыбовалов Серафим Олегович (тим-лид, front-end разработчик) Демьяненко Виктория Сергеевна (дизайнер, front-end разработчик) Сокирко Анна Алексеевна (тестировщик, front-end разработчик) Соколов Виктор  Евгеньевич (back-end разработчик, тестировщик) Беликов Тимофей Михайлович (back-end разработчик)</p>
+                            <p>По всем вопросам обращаться: serafimrybovalov@gmail.com</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <main>
+        <section class="section-images">
+            <img src="../static/pictures/roket.png" alt="roket-first" class="roket-first">
+            <img src="../static/pictures/roket.png" alt="roket-second" class="roket-second">
+            <img src="../static/pictures/roket.png" alt="roket-third" class="roket-third">
+        </section>
+        <section class="main-section">
+            <div class="container">
+                <div class="main-section-wrapper">
+                    <div class="main-wrapper-text">
+                        <p>Алиас (Alias) - это настольная игра на объяснение слов, в которую могут играть от 4 до 12 человек.</p>
+                        <h3>Цель игры:</h3>
+                        <p>Помочь своей команде угадать как можно больше слов или фраз за отведенное время, объяснив их с помощью синонимов, антонимов и других подсказок, не называя само слово. (Правила можно найти в меню)</p>
+                    </div>
+                    <div class="main-wrapper-image" id="main-wrapper-image">
+                        <div class="wrapper-image-card">
+                            <img src="../static/pictures/logo-full.png" alt="logo-full">
+                            <p><a href="next">Начать Игру</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <div class="container">
+            
+        </div>
+    </footer>
+    <script>
+        var rules_element = document.querySelector('.rules-wrapper');
+        
+        document.getElementById("rules").onclick = function() {
+            rules_element.classList.toggle('rules-active')
+        };
+
+        document.getElementById("rules-close").onclick = function() {
+            rules_element.classList.toggle('rules-active')
+        };
+        
+        var about_us = document.querySelector('.about-us-wrapper');
+        
+        document.getElementById("about-us").onclick = function() {
+            about_us.classList.toggle('about-active')
+        };
+    
+        document.getElementById("about-us-close").onclick = function() {
+            about_us.classList.toggle('about-active')
+        };
+    </script>
+</body>
+</html>
