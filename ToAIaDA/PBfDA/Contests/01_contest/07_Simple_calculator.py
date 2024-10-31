@@ -1,0 +1,5 @@
+nums = input().split()
+print("Сумма: " + str(eval(f"{nums[0]} + {nums[1]}")))
+print("Разность: " + str(eval(f"{nums[0]} - {nums[1]}")))
+print("Произведение: " + str(eval(f"{nums[0]} * {nums[1]}")))
+print("Частное: " + str(eval(f"{nums[0]} / {nums[1]}")))
