@@ -1,0 +1,391 @@
+header{
+    position: fixed;
+    display: flex;
+    width: 100vw;
+    justify-content: center;
+    opacity: 0.8;
+    background-color: #fff;
+    z-index: 9999;
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.5);
+    transition: 0.6s ease-in-out;
+}
+
+.container{
+    width: 1400px;
+}
+
+header:hover{
+    opacity: 1;
+}
+
+header .container{
+    width: 1400px;
+}
+
+body{
+    background-repeat: no-repeat;
+    background-color: #292929;
+}
+
+.section-welcome{
+    width: 100vw;
+    height: 1080px;
+    background-image: url("../assets/pictures/bg-space.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    /* filter: brightness(30%); */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+}
+
+.section-welcome:after {
+    content: '';
+    pointer-events: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: -170px;
+    right: -17px;
+    z-index: 10;
+    background: linear-gradient(to top, #292929, rgba(0, 0, 0, 0));
+    filter: brightness(100%);
+}
+
+.section-welcome .container{
+    width: 1400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+}
+
+.welcome-planet h1 {
+    transform: rotate(320deg);
+    margin: 160px 0px 0px 80px;
+    position: absolute;
+    font-size: 54px;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: #008f0e;
+}
+
+.section-test{
+    height: 300vh;
+}
+
+.welcome-planet{
+    width: 500px;
+    position: absolute;
+    margin: 100px -500px 0px 0px;
+    filter: brightness(0) saturate(100%) invert(25%) sepia(78%) saturate(2552%) hue-rotate(123deg) brightness(96%) contrast(104%);
+    animation: planet-anim 10s infinite;
+}
+
+.welcome-rocket{
+    width: 150px;
+    position: absolute;
+    transform: rotate(90deg);
+    margin: 200px 0px 0px 0px;
+    filter: brightness(0) saturate(100%) invert(25%) sepia(78%) saturate(2552%) hue-rotate(123deg) brightness(96%) contrast(104%);
+    animation: rocket-anim 10s infinite;
+}
+
+@keyframes planet-anim{
+    0%{
+        transform: scale(1) rotate(15deg);
+    }
+    50%{
+        transform: scale(1.1) rotate(25deg);
+    }
+    100%{
+        transform: scale(1) rotate(15deg);
+    }
+}
+
+
+@keyframes rocket-anim{
+    0%{
+        transform: scale(1) rotate(90deg);
+    }
+    50%{
+        transform: scale(1.2) rotate(100deg);
+        margin: 300px 0px 0px 100px;
+    }
+    100%{
+        transform: scale(1) rotate(90deg);
+    }
+}
+
+.section-welcome__info{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 100px;
+}
+
+.section-welcome__info h1{
+    font-size: 90px;
+    font-weight: 900;
+    font-family: "Montserrat Alternates", sans-serif;
+    text-transform: uppercase;
+    color: white;
+    z-index: 1;
+}
+
+.section-welcome__info button{
+    width: 550px;
+    height: 100px;
+    cursor: pointer;
+    border-radius: 50px;
+    border: 2px solid white;
+    color: #fff;
+    font-size: 28px;
+    transition: 0.6s ease-in-out;
+    background-color: rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+
+.section-welcome__info button:hover{
+    background-color: #fff;
+    color: black;
+}
+
+.section-welcome p{
+    position: absolute;
+    font-size: 300px;
+    font-weight: 900;
+    color: rgba(0, 0, 0, 0);
+    -webkit-text-stroke: 1px black;
+    z-index: 0;
+    -moz-user-select: -moz-none;
+    -o-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+.section-about{
+    margin-top: 300px;
+}
+
+.section-about .container{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+.section-about-wrapper{
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    gap: 100px;
+}
+
+.about-text{
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+    width: 50%;
+}
+
+.about-image{
+    width: 40%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.about-image img{
+    width: 800px;
+    border-radius: 50px 0px 0px 50px;
+}
+
+.about-text h2{
+    font-weight: 900;
+    font-size: 80px;
+}
+
+.about-text h2::after{
+    content: "about us";
+    font-family: "Pacifico", cursive;
+    position: absolute;
+    margin-left: -25px;
+    margin-top: 65px;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 28px;
+    color: #008f0e;
+}
+
+.about-text p{
+    font-size: 28px;
+    text-indent: 25px;
+}
+
+.about-text button{
+    width: 250px;
+    height: 80px;
+    cursor: pointer;
+    border-radius: 0px 50px 0px 50px;
+    color: #fff;
+    font-size: 28px;
+    transition: 0.6s ease-in-out;
+    background-color: rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+
+.about-text button:hover{
+    filter: invert(100%);
+    color: #000;
+}
+
+.section-top{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 500px 0px;
+}
+
+.section-top .container{
+    width: 1800px;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    gap: 50px;
+}
+
+.section-top-title h2{
+    color: #fff;
+    font-weight: 900;
+    font-size: 80px;
+}
+
+.section-top-title h2::after{
+    content: "startap top";
+    position: absolute;
+    margin-left: -25px;
+    margin-top: 65px;
+    font-family: "Pacifico", cursive;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 28px;
+    color: #008f0e;
+}
+
+.section-top-wrapper{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    gap: 30px;
+    color: #fff;
+    width: 1400px;
+}
+
+.section-top-item{
+    width: 100%;
+    background-color: #151515;
+    padding: 30px;
+    border-radius: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+    gap: 30px;
+}
+
+.top-item__image{
+    width: 100%;
+    height: 300px;
+    background-color: #101010;
+    border-radius: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url("../assets/icons/image.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 100px;
+}
+
+.section-top-item h3{
+    font-size: 38px;
+    color: #fff;
+    font-weight: 900;
+    cursor: pointer;
+    transition: 0.2s ease-in-out;
+}
+
+.section-top-item p{
+    width: 100%;
+    font-size: 28px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.section-top-item h3:hover{
+    color: gray;
+}
+
+.top-item__like{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+}
+
+.top-item__like img{
+    width: 100px;
+    cursor: pointer;
+    transition: 0.2s ease-in-out;
+}
+
+.top-item__like img:hover{
+    filter: brightness(0) saturate(100%) invert(25%) sepia(94%) saturate(3535%) hue-rotate(339deg) brightness(92%) contrast(87%);
+}
+
+.top-item__like p{
+    font-weight: 900;
+}
+
+.section-top-item:nth-child(1)::before{
+    content: "";
+    width: 100px;
+    height: 100px;
+    background-image: url("../assets/icons/champion.svg");
+    filter: brightness(0) saturate(100%) invert(96%) sepia(43%) saturate(3320%) hue-rotate(9deg) brightness(105%) contrast(101%);
+    position: absolute;
+    margin: 0px 0px 0px -190px;
+    z-index: 3;
+}
+
+.section-top-item:nth-child(2)::before{
+    content: "";
+    width: 100px;
+    height: 100px;
+    background-image: url("../assets/icons/champion.svg");
+    filter: brightness(0) saturate(100%) invert(77%) sepia(3%) saturate(0%) hue-rotate(211deg) brightness(100%) contrast(87%);
+    position: absolute;
+    margin: 0px 0px 0px -190px;
+    z-index: 3;
+}
+
+.section-top-item:nth-child(3)::before{
+    content: "";
+    width: 100px;
+    height: 100px;
+    background-image: url("../assets/icons/champion.svg");
+    filter: brightness(0) saturate(100%) invert(87%) sepia(32%) saturate(5390%) hue-rotate(336deg) brightness(101%) contrast(84%);
+    position: absolute;
+    margin: 0px 0px 0px -190px;
+    z-index: 3;
+}

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StartBam | Register</title>
+    <link rel="stylesheet" href="../static/css/filter.css">
+    <link rel="stylesheet" href="../static/css/style.css">
+    <link rel="stylesheet" href="../static/css/main.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-menu">
+                <div class="header-logo">
+                    <button class="btn btn-main">
+                        <img src="../static/assets/icons/Startbamsvg.svg" alt="logo">
+                    </button>
+                </div>
+                <div class="header-user">
+                    <div class="user-wrapper">
+                        <div class="user-wrapper-info">
+                            
+                        </div>
+                    </div>
+                    <div class="burger-menu">
+                        <div class="burger-menu__stick"></div>
+                        <div class="burger-menu__stick"></div>
+                        <div class="burger-menu__stick"></div>
+                    </div>
+                    <div class="burger-menu-wrapper">
+                        <ul>
+                            <ul>
+                                <li class="nav-item"><a href="#">Поиск стартапов</a></li>
+                                <li class="nav-item"><a href="#">Контакты</a></li>
+                            </ul>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <main class="main-section">
+        <section class="section-startups">
+            <div class="container">
+                <div class="section-startups__wrapper">
+                    <h2 class="montserrat-alt">Поиск стартапов</h2>
+                    <form action="">
+                        <label for="" class="montserrat">Фильтр</label>
+                        <select class="filter" id="filter" name="filter">
+                            <option name="0" value="0">По рейтингу</option>
+                            <option name="1" value="1">С начала новые</option>
+                            <option name="2" value="2">С начала старые</option>
+                            <option name="3" value="3">Не популярные</option>
+                          </select>
+                          <label for="" class="montserrat">Поиск</label>
+                          <input class="filter" type="search">
+                    </form>
+                    
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <div class="container">
+            <img src="../static/assets/icons/Startbamsvg.svg" alt="logo">
+        </div>
+    </footer>
+    <script
+    src="https://code.jquery.com/jquery-3.7.1.min.js"
+    integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+    crossorigin="anonymous"></script>
+    <script src="../static/js/script.js"></script>
+    <script src="../static/js/burgermenu.js"></script>
+    <script src="../static/js/filter.js"></script>
+</body>
+</html>

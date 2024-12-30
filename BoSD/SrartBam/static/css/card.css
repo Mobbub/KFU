@@ -1,0 +1,40 @@
+header .container{
+    width: 1400px;
+}
+
+.section-card{
+    padding: 300px 0px;
+}
+
+.section-card__wrapper{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+    color: white;
+    padding: 50px;
+    background-color: #202020;
+    border-radius: 50px;
+}
+
+.card-image__wrapper{
+    width: 1300px;
+    height: 500px;
+    background-color: #202020;
+    border-radius: 50px;
+    background-image: url("../assets/icons/image.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 100px;
+}
+
+.section-card__wrapper p{
+    font-size: 28px;
+    color: gray;
+}
+
+.section-card__wrapper p span{
+    font-weight: 900;
+    color: white;
+}
